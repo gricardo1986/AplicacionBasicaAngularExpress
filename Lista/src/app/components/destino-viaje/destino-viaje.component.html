@@ -1,0 +1,72 @@
+<div class="card-content" [@esFavorito]="destino.isSelected()? 'estadoFavorito': 'estadoNoFavorito'">
+    <div class="card-img">
+        <span><h4>{{posicion}} - {{destino.nombre}}</h4></span>
+        <img src="https://placeimg.com/380/230/nature" alt="">
+    </div>
+    <div class="card-desc">
+        <h3>{{destino.nombre}}</h3>
+        <p>Servicios</p>
+        <ul>
+            <li *ngFor="let s of destino.servicios">
+                <span [ngSwitch]="s">
+                    <i *ngSwitchCase="'Desayuno'">DESAYUNO - {{s}}</i>
+                    <i *ngSwitchCase="'Comida'">COMIDA - {{s}}</i>
+                    <i *ngSwitchDefault="">{{s}}</i>
+                </span>
+            </li>
+        </ul>
+        <p>Lorem ipsum dolor sit ame consectetur, adipisicing elit. [{{destino.imagenUrl}}]</p>
+        
+        <div class="row">
+            <div class="col-3 col-sm-3">
+                <a href="#" (click)="voteUp()"
+                    appTrackearClick
+                    data-trackear-tags="destino_vote_up lista_destinos_item">
+                    <i class="material-icons md-18">thumb_up</i>
+                </a>
+                <a href="#" (click)="voteDown()"
+                    appTrackearClick
+                    data-trackear-tags="destino_vote_down lista_destinos_item">
+                    <i class="material-icons md-18">thumb_down</i>
+                </a>
+            </div>
+            <div class="col-6 col-sm-6 text-center">
+                Votos: <span class="badge bg-secondary">{{ destino.vote }}</span>
+            </div>
+            <div class="col-3 col-sm-3 text-end">
+                <a href="#" (click)="voteReload()" class="btn btn-info">
+                    <i class="material-icons md-18">cached</i>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-sm-6">
+                <a href="#" class="btn-card" (click)="ir()"
+                    appTrackearClick
+                    data-trackear-tags="destino_elegir_preferido lista_destinos_item">
+                    Ir!</a>
+            </div>
+            <div class="col-6 col-sm-6 text-end">
+                <a href="#" (click)="deleteViaje()" class="btn btn-danger">
+                    <i class="material-icons md-18">delete</i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-6 col-sm-6 text-center">
+                <span *ngIf="destino.isSelected()">
+                    <span ngNonBindable>{{ - PREFERIDO - }}</span>
+                </span>
+            </div>
+        </div>
+        
+        <div class="row justify-content-center">
+            <div class="col-6 col-sm-6 text-center">
+                <a [routerLink]="['/destino', '1']">Ver detalle</a>
+            </div>
+        </div>
+        
+    </div>
+</div>

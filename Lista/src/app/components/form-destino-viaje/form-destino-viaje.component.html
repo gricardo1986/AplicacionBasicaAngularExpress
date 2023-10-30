@@ -1,0 +1,31 @@
+<form class="container-fluid"
+    [formGroup]="fg"
+    (ngSubmit)="guardar(fg.controls['nombre'].value, fg.controls['imageUrl'].value)">
+    <div class="mb-3">
+        <label for="nombre" form-contro>Nombre</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingresar el nombre"
+            formControlName="nombre">
+        <ul>
+            <li *ngFor="let r of searchResults;">{{r}}</li>
+        </ul>
+        <div *ngIf="!fg.controls['nombre'].valid">
+            Control invalido!
+        </div>
+        <div *ngIf="fg.controls['nombre'].hasError('required')">
+            Nombre requerido!
+        </div>
+        <div *ngIf="fg.controls['nombre'].hasError('invalidNombre')">
+            Nombre invalido!
+        </div>
+        <div *ngIf="fg.controls['nombre'].hasError('minLongNombre')">
+            El nombre debe tener al menos {{minLonguitud}} de largo!
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="imageUrl" form-contro>Url de la Imagen</label>
+        <input type="text" class="form-control" id="imagenUrl" placeholder="Ingresar la Url de la imagen"
+            formControlName="imageUrl">
+    </div>
+    <button type="submit" class="btn btn-primary"
+        *ngIf="fg.valid" >Guardar!</button>
+</form>

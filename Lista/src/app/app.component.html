@@ -1,0 +1,42 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand text-center" [routerLink]="['/home']">
+      {{title}}
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" [routerLink]="['/home']">Home</a>
+        <a class="nav-link" [routerLink]="['/destino']">Destino</a>
+        <a class="nav-link" [routerLink]="['/vuelos']">Vuelos</a>
+        <a class="nav-link" [routerLink]="['/reservas']">Reservas</a>
+        <a class="nav-link" [routerLink]="['/protected']">Protegida</a>
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
+      </div>
+    </div>
+    <div style="float: right;">
+      <select #idioma (change)="translate.use(idioma.value)">
+        <option value="es">Español</option>
+        <option value="fr">France</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</nav>
+
+<div class="container content">
+  <div class="row">
+    <h1>
+      {{ title }} <b [innerHTML]="'Hola' | translate"></b>
+    </h1>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+
+<hr class="mb-5"/>
+
+Fecha: {{ tiempo | async}}
+

@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-6 offset-sm-3">
+            <br/>
+            <span class="anchor" id="formLogin"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 offset-sm-3">
+            
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="mb-0">Lista de deseos</h3>
+                </div>
+                <div class="card-body">
+                    <app-form-destino-viaje
+                        (onItemAdded_FromForm)="agregado($event)">
+                    </app-form-destino-viaje>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <!--
+    <hr class="mb-5">
+
+    <ul class="list-group">
+        <li *ngFor="let l of lista" class="list-group-item">
+            {{l}}
+        </li>
+    </ul>
+    -->
+    
+    <hr class="mb-5">
+
+    <div class="row">
+        <app-destino-viaje *ngFor="let d of all; let i = index"
+            [destino]="d" [posicion]="i + 1"
+            (onClicked_FromDestinoViaje)="elegido($event)"
+            appEspiame>
+        </app-destino-viaje>
+    </div>
+
+    <hr class="mb-5">
+
+    <div class="row row-flex">
+        <h5>Actividades</h5>
+        <ul>
+            <li *ngFor="let u of updates">
+                {{u}}
+            </li>
+        </ul>
+    </div>
+
+</div>
